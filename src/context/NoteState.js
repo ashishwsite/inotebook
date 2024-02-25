@@ -1,6 +1,7 @@
 import NoteContext from "./noteContext";
 import { useState } from "react";
-
+//NoteState is a provider file in which all function ,filed are written which are acess any where and any time 
+// write all function and variable here
 const NoteState = (props) => {
   const host = "http://localhost:5000"
   const notesInitial = []
@@ -86,6 +87,8 @@ const NoteState = (props) => {
   }
 
   return (
+    // this syntex to tranfer data in context 
+    // <contextName.Provider value={{all varaible and function which want to transfer}}>{props.children}</contextName./Provider>
     <NoteContext.Provider value={{ notes, addNote, deleteNote, editNote, getNotes }}>
       {props.children}
     </NoteContext.Provider>

@@ -39,22 +39,24 @@ router.post('/addnote', fetchuser, [
             res.status(500).send("Internal Server Error");
         }
     })
-
+// update karne k liye put requset ko  used karte hai 
+// update karne k liye ham title,tag,description bhejeyge jo req,body se jaeeyga
 // ROUTE 3: Update an existing Note using: PUT "/api/notes/updatenote". Login required
-router.put('/updatenote/:id', fetchuser, async (req, res) => {
+router.put('/updatenote/:id', fetchuser, async (req, res) => {// fetchuser is middleware ehich help to detrime that user is log in
     const { title, description, tag } = req.body;
     try {
-        // Create a newNote object
+        // Create a newNote object by taking data frome req.body if  presrnt
         const newNote = {};
         if (title) { newNote.title = title };
         if (description) { newNote.description = description };
         if (tag) { newNote.tag = tag };
 
-        // Find the note to be updated and update it
-        let note = await Note.findById(req.params.id);
-        if (!note) { return res.status(404).send("Not Found") }
+        // Find the note to be updated , by using id (id i s take from req.param.id)
+        //and update it
+        let note = await Note.findById(req.params.id);//(!note==empty_note) req.param.id ka matlab url me se id ko lega 
+        if (!note) { return res.status(404).send("Not Found") } // note nhi mila to 
 
-        if (note.user.toString() !== req.user.id) {
+        if (note.user.toString() !== req.user.id) {// note me se user ki is ko match kara rahe hai rqe ke user id se 
             return res.status(401).send("Not Allowed");
         }
         note = await Note.findByIdAndUpdate(req.params.id, { $set: newNote }, { new: true })

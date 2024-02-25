@@ -1,0 +1,17 @@
+install concurrently(npm install -g concurrently) .It help help to run multiple server at a time 
+we required concurrently beacuse we have to run searver 1(react ) and server2(backend)
+backend means learning of MERN stack together
+E=express it is frame work of node js web freamworkR
+R=react client server UI 
+Nodejs= backend server language
+to make backend server first make nodemodule,package.json folder using(npm init )
+install mongoess packeage to connent servear with mangosee(npm i mongoose) make a db file which connect which have a function connent with databaase 
+make index.js file to entry point of backend
+thunder client is app(extension) which help to {make new request and get response on url}
+MONGOOSDB_COMPASS :it is platform which show connnection of data to database (tool for view data,connection and many more)
+MONGOOSEDB_ATLAS:It is a platform to write comment and add data to database and other editable tool provide in this software 
+MONGOOSDB_SERVER:it is servver of database which connet with database (it is madsatory on )
+MONGOOSDB_SHEEL:it is terminl which provide inteface to write commit and work with database
+CLLBACK:it is function which is pass as arugumet in another function,it run when function ohter task complete ,after completetion of function ,callback function is run
+NODEMON:its is package  which hit the server ,whenever something is updated in backen file
+RUNNING BACKEND:nodemon <file_name/file_path>
