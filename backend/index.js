@@ -8,9 +8,17 @@ const port = 5000
 
 app.use(cors())
 app.use(express.json())
-
-// Available Routes
-app.use('/api/auth', require('./routes/auth'))
+// // first url which to check the server by defalut this requst  through this url is 
+// app.get('/',(req,res)=>{
+// res.send("hello ramshish it is generated on get reqest of URl(loacalhost:5000/) ")
+// })
+// // seond your to check route 
+// app.get('/data',(req,res)=>{
+//   res.send("this shown whenever requst through url /data")
+// })
+// Available Routes ksi aur folder se rout ko lekar hit kar rah hua
+// app.use(route,location) to hit rote from other file
+app.use('/api/auth', require('./routes/auth'))// require(location of file where route is presnt)
 app.use('/api/notes', require('./routes/notes'))
 
 

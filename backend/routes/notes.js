@@ -1,14 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const fetchuser = require('../middleware/fetchuser');
-const Note = require('../models/Note');
+const Note = require('../models/Note');// note collecion chahiye jo new schema bante time banya tah 
 const { body, validationResult } = require('express-validator');
 
 // ROUTE 1: Get All the Notes using: GET "/api/notes/getuser". Login required
 router.get('/fetchallnotes', fetchuser, async (req, res) => {
     try {
         const notes = await Note.find({ user: req.user.id });
-        res.json(notes)
+          if(notes.length===0) return res.json("No note present yet ,Please add note")// return is mandatory
+          res.json(notes)
     } catch (error) {
         console.error(error.message);
         res.status(500).send("Internal Server Error");
@@ -31,7 +32,7 @@ router.post('/addnote', fetchuser, [
                 title, description, tag, user: req.user.id
             })
             const savedNote = await note.save()
-
+       
             res.json(savedNote)
 
         } catch (error) {
@@ -42,6 +43,7 @@ router.post('/addnote', fetchuser, [
 // update karne k liye put requset ko  used karte hai 
 // update karne k liye ham title,tag,description bhejeyge jo req,body se jaeeyga
 // ROUTE 3: Update an existing Note using: PUT "/api/notes/updatenote". Login required
+// {:id = : ke baad v string param se liya ja skta hai isliye : likh dete hai }
 router.put('/updatenote/:id', fetchuser, async (req, res) => {// fetchuser is middleware ehich help to detrime that user is log in
     const { title, description, tag } = req.body;
     try {
